@@ -64,7 +64,7 @@ pipeline {
 							eksctl create cluster -f cluster.yaml
 							'''
 						} catch (exception) {
-							echo "❌ Failed to install kubectl: ${exception}"
+							echo "❌ Failed to create EKS cluster: ${exception}"
 							error("Halting pipeline due to EKS cluster creation failure.")
 						}
 					}
