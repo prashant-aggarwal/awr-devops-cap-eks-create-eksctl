@@ -46,8 +46,21 @@ pipeline {
                 '''
             }
         }
-
-
+		
+		stage('Create EKS Cluster') {
+            steps {
+                withAWS(region: "${env.AWS_REGION}", credentials: 'AWS') {
+					try {
+						sh '''
+						echo "Creating EKS cluster from YAML..."
+						eksctl create cluster -f cluster.yaml
+						'''
+					} catch (exception) {
+						echo "❌ Failed to install kubectl: ${exception}"
+					}
+                }
+            }
+        }
     }
 
     post {
