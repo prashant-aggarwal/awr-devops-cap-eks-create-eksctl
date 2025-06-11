@@ -28,6 +28,23 @@ pipeline {
                 }
             }
         }
+		
+		stage('Install eksctl') {
+            steps {
+                script {
+                    sh '''
+					echo "Installing eksctl..."
+					export ARCH=amd64
+					export PLATFORM=$(uname -s)_$ARCH
+					curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+					tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp
+					rm eksctl_$PLATFORM.tar.gz
+					sudo mv /tmp/eksctl /usr/local/bin
+					eksctl version
+					'''
+                }
+            }
+        }
 	}
 	
 	post {
