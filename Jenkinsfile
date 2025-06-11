@@ -1,13 +1,16 @@
 pipeline {
     agent any
 
+	// Set the environment variables
     environment {
         AWS_REGION = 'us-east-1'
         CUSTOM_BIN = "${env.HOME}/bin"
         PATH = "${env.HOME}/bin:${env.PATH}"
     }
 
+	// Multistage pipeline
     stages {
+		// Stage 1 - Checkout code repository
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
@@ -16,6 +19,7 @@ pipeline {
             }
         }
 
+		// Stage 1 - Install kubectl
         stage('Install kubectl') {
             steps {
                 sh '''
@@ -30,6 +34,7 @@ pipeline {
             }
         }
 
+        // Stage 2 - Install eksctl
         stage('Install eksctl') {
             steps {
                 sh '''
@@ -47,9 +52,11 @@ pipeline {
             }
         }
 		
-		stage('Create EKS Cluster') {
+		// Stage 3 - Create EKS Cluster using cluster.yaml
+        stage('Create EKS Cluster') {
             steps {
 				script {
+				// Install AWS Steps plugin to make this work
 				withAWS(region: "${env.AWS_REGION}", credentials: 'AWS') {
 						try {
 							sh '''
@@ -66,7 +73,8 @@ pipeline {
         }
     }
 
-    post {
+    // Cleanup the workspace in the end
+	post {
         always {
             cleanWs()
         }
