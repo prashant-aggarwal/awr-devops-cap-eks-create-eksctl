@@ -6,12 +6,16 @@ pipeline {
         PATH = "${env.HOME}/bin:${env.PATH}" // Include custom kubectl path
     }
 
+	
     stages {
         stage('Checkout Repo') {
-            git branch: 'main', 
-                credentialsId: 'Github', 
-                url: 'https://github.com/prashant-aggarwal/awr-devops-eks-cluster.git'
-        }
+			steps {
+				git branch: 'main', 
+					credentialsId: 'Github', 
+					url: 'https://github.com/prashant-aggarwal/awr-devops-eks-cluster.git'
+				}
+			}
+		}
 
         stage('Install kubectl') {
             steps {
