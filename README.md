@@ -1,4 +1,4 @@
-## Deploy an EKS cluster using eksctl command
+## Deploy a Kubernetes cluster in EKS using eksctl command
 Create the necessary configuration in cluster.yaml
 
 #### Create a Jenkinsfile for running eksctl command for deployment of EKS cluster:
