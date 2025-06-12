@@ -23,3 +23,4 @@ Create the necessary configuration in cluster.yaml
 9. Save the changes and click **Build Now** to trigger the pipeline.
 10. Check the Console Output associated with the lastest job for verification.
 11. Also verify the CloudFormation stack progress and EKS cluster creation progress in the AWS management console in the selected region.
+12. Additionally, you can setup a Webhook on the repository and enable **GitHub hook trigger for GITScm polling** option in the pipeline for automatic pipeline triggers whenever changes are pushed to the repository.
