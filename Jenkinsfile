@@ -19,7 +19,7 @@ pipeline {
             }
         }
 
-		// Stage 1 - Install kubectl
+		// Stage 2 - Install kubectl
         stage('Install kubectl') {
             steps {
                 sh '''
@@ -34,7 +34,7 @@ pipeline {
             }
         }
 
-        // Stage 2 - Install eksctl
+        // Stage 3 - Install eksctl
         stage('Install eksctl') {
             steps {
                 sh '''
@@ -52,7 +52,7 @@ pipeline {
             }
         }
 		
-		// Stage 3 - Create EKS Cluster using cluster.yaml
+		// Stage 4 - Create EKS Cluster using cluster.yaml
         stage('Create EKS Cluster') {
             steps {
 				script {
