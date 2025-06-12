@@ -15,7 +15,7 @@ pipeline {
             steps {
                 git branch: 'main',
                     credentialsId: 'Github',
-                    url: 'https://github.com/prashant-aggarwal/awr-devops-eks-cluster.git'
+                    url: 'https://github.com/prashant-aggarwal/awr-devops-cap-eks-create-eksctl.git'
             }
         }
 
