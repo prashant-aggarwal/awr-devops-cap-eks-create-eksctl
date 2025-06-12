@@ -52,7 +52,7 @@ pipeline {
             }
         }
 		
-		// Stage 4 - Create EKS Cluster using cluster.yaml
+		// Stage 4 - Create EKS Cluster
         stage('Create EKS Cluster') {
             steps {
 				script {
